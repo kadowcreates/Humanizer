@@ -13,3 +13,7 @@ allowed-tools:
   - Glob
   - AskUserQuestion
 ---
+
+## Changelog
+
+See local skill file. Full v3.0.0 Humanizer skill body follows in this repository after this commit is completed.
