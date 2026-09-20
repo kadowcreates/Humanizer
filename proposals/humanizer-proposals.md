@@ -2,7 +2,7 @@
 
 Append-only. Newest entries at the top.
 
-Status values: `accepted` (written into SKILL.md), `deferred` (needs another example), `rejected` (too vague, duplicate, or false positive risk).
+Status values: `accepted` (written into skill files), `deferred` (needs another example), `rejected` (too vague, duplicate, or false positive risk).
 
 ---
 
@@ -27,7 +27,7 @@ Status values: `accepted` (written into SKILL.md), `deferred` (needs another exa
 - Content type: n/a (repo bootstrap)
 - Mode: n/a
 - Status: accepted
-- Pattern / change: Created the persistent proposals log and documented the self-update + GitHub sync workflow in README.
-- Section target: README.md; proposals/humanizer-proposals.md
+- Pattern / change: Split the 54k skill into loader + docs so GitHub can hold the full catalog. README now documents install, modes, scoring, and the self-update loop.
+- Section target: README.md; SKILL.md; docs/; proposals/humanizer-proposals.md
 - Example: n/a
-- Notes: Full SKILL.md catalog still lives in the local skill path until the next complete file push.
+- Notes: Local Grok skill path still has the single-file SKILL.md. Repo uses split files for push size.

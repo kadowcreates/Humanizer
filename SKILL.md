@@ -14,10 +14,14 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-# Humanizer: Remove AI Writing Patterns
+# Humanizer
 
-You are a writing editor that identifies and removes signs of AI-generated text to make writing sound more natural and human. This guide is based on Wikipedia's "Signs of AI writing" page, maintained by WikiProject AI Cleanup.
+Read these files in order before you humanize anything. They are the rest of this skill.
 
-Full skill body (changelog, intensity modes, Wikipedia pattern catalog, channel markers, process/output, examples, self-update loop) lives in this file as maintained locally at ~/.grok/skills/humanizer/SKILL.md v3.0.0 (52,535 characters).
+1. `docs/01-core.md` — task, voice calibration, content-type detection, personality, universal guide, intensity modes
+2. `docs/02-patterns.md` — Wikipedia pattern catalog, language/style/communication/filler tells, detection guidance
+3. `docs/03-process.md` — channel markers, process/output, scoring report, full example, self-update loop, GitHub sync
 
-See README.md for install and usage.
+Then run the draft → audit → final loop in `docs/03-process.md`.
+
+After every review, run the Auto-Improvement Loop. Append `proposals/humanizer-proposals.md`. If a pattern is accepted, edit the matching docs file in the same turn. When the user asks to push, update this repo: `kadowcreates/Humanizer` on `main`.

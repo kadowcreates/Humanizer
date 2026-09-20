@@ -2,7 +2,7 @@
 
 Pattern-based skill that finds AI writing tells and rewrites the text so it sounds like a person wrote it.
 
-It is built for professional use: LinkedIn posts, emails, Slack, blogs, docs. The goal is natural voice and credibility, not detector-gaming.
+Built for professional use: LinkedIn posts, emails, Slack, blogs, and docs. The point is natural voice and credibility, not detector-gaming.
 
 - **Version:** 3.0.0
 - **License:** MIT
@@ -16,21 +16,21 @@ It is built for professional use: LinkedIn posts, emails, Slack, blogs, docs. Th
 2. Scans for Wikipedia "Signs of AI writing" patterns plus channel-specific tells.
 3. Rewrites in a chosen intensity mode.
 4. Scores the result and writes a short review report.
-5. Self-improves: logs new high-signal patterns and (when you allow it) updates the skill.
+5. Self-improves: logs new high-signal patterns and updates the skill when the pattern earns it.
 
 It rewrites. It does not delete coverage. If the original has five points, the rewrite still has five points.
 
 ## Features
 
-- Wikipedia-based detection core (WikiProject AI Cleanup).
-- Channel rules for LinkedIn, email, Slack, and long-form posts.
-- Intensity modes: Light, Balanced, Aggressive, Voice-Match.
-- Optional voice calibration from a writing sample.
-- Scoring: AI-Likeness, Authenticity, Reader Value, Domain Tone.
-- Hook vs value check for LinkedIn.
-- Hard rule: no em dashes or en dashes in the final rewrite.
-- Multi-pass handling for long documents.
-- Self-update loop + append-only proposals log.
+- Wikipedia-based detection core (WikiProject AI Cleanup)
+- Channel rules for LinkedIn, email, Slack, and long-form posts
+- Intensity modes: Light, Balanced, Aggressive, Voice-Match
+- Optional voice calibration from a writing sample
+- Scoring: AI-Likeness, Authenticity, Reader Value, Domain Tone
+- Hook vs value check for LinkedIn
+- Hard rule: no em dashes or en dashes in the final rewrite
+- Multi-pass handling for long documents
+- Self-update loop plus an append-only proposals log
 
 ## Intensity modes
 
@@ -59,11 +59,15 @@ Copy `SKILL.md` into the tool's skills folder, for example:
 
 Keep the folder name `humanizer` so the frontmatter `name: humanizer` matches.
 
+Also copy the `docs/` folder. `SKILL.md` loads `docs/01-core.md`, `docs/02-patterns.md`, and `docs/03-process.md`.
+
 ### Update from this repo
 
 ```bash
 git clone https://github.com/kadowcreates/Humanizer.git
 cp Humanizer/SKILL.md ~/.grok/skills/humanizer/SKILL.md
+cp -r Humanizer/docs ~/.grok/skills/humanizer/
+cp -r Humanizer/proposals ~/.grok/skills/humanizer/
 ```
 
 Or pull if you already cloned it:
@@ -71,6 +75,7 @@ Or pull if you already cloned it:
 ```bash
 cd Humanizer && git pull
 cp SKILL.md ~/.grok/skills/humanizer/SKILL.md
+cp -r docs proposals ~/.grok/skills/humanizer/
 ```
 
 ## Usage
@@ -115,10 +120,10 @@ This is not a static prompt. After every review the skill is required to run its
 
 ### What happens after each humanize pass
 
-1. Compare flags from this review against patterns already in `SKILL.md`.
+1. Compare flags from this review against patterns already in the skill files.
 2. If a new high-signal pattern showed up, add it as a concrete Before/After rule.
 3. Append a dated entry to `proposals/humanizer-proposals.md`.
-4. Report to you:
+4. Report:
 
 ```text
 ## Skill Update
@@ -131,7 +136,7 @@ Rules for adding patterns:
 - Must be flaggable, not vague.
 - Must include a Before/After example from the text just reviewed (anonymize if needed).
 - No duplicates.
-- Channel-specific tells go in the channel section. Universal tells go in the core sections.
+- Channel-specific tells go in `docs/03-process.md`. Universal tells go in `docs/02-patterns.md`.
 
 ### Proposals log
 
@@ -146,18 +151,16 @@ Each entry records:
 - Example
 - Accepted / deferred / rejected
 
-Accepted items get written into `SKILL.md`. Deferred items stay in the log until a later pass proves them.
+Accepted items get written into the matching docs file. Deferred items stay in the log until a later pass proves them.
 
 ### How you tell it to update
 
-Use one of these after a rewrite, or as a standalone request:
-
 ```text
-Run the humanizer self-update on the last rewrite. Log proposals. If the pattern is high-signal, patch SKILL.md.
+Run the humanizer self-update on the last rewrite. Log proposals. If the pattern is high-signal, patch the skill files.
 ```
 
 ```text
-Promote accepted proposals into SKILL.md and bump the changelog.
+Promote accepted proposals into the skill files and bump the changelog.
 ```
 
 ```text
@@ -166,13 +169,13 @@ Push the updated humanizer skill back to GitHub.
 
 When you say push, the expected commit is:
 
-- `SKILL.md` (if patterns were added)
+- `SKILL.md` and/or `docs/*.md` (if patterns were added)
 - `proposals/humanizer-proposals.md` (always append-only)
 - `README.md` only if install/usage changed
 
 Do not commit local backup files (`SKILL.md.backup.*`).
 
-### What "good" self-improvement looks like
+### What good self-improvement looks like
 
 Good: "Tailing negation fragments after a complete clause (`no guessing`) now have a before/after under Negative Parallelisms."
 
@@ -197,7 +200,10 @@ Scores are 1-10. They are a diagnostic, not a vanity metric.
 Humanizer/
   README.md                         # this file
   LICENSE                           # MIT
-  SKILL.md                          # the skill the model loads
+  SKILL.md                          # loader + frontmatter
+  docs/01-core.md                   # task, voice, modes
+  docs/02-patterns.md               # pattern catalog
+  docs/03-process.md                # channels, report, self-update
   proposals/humanizer-proposals.md  # append-only improvement log
 ```
 
