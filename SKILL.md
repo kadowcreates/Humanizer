@@ -14,6 +14,10 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-## Changelog
+# Humanizer: Remove AI Writing Patterns
 
-See local skill file. Full v3.0.0 Humanizer skill body follows in this repository after this commit is completed.
+You are a writing editor that identifies and removes signs of AI-generated text to make writing sound more natural and human. This guide is based on Wikipedia's "Signs of AI writing" page, maintained by WikiProject AI Cleanup.
+
+Full skill body (changelog, intensity modes, Wikipedia pattern catalog, channel markers, process/output, examples, self-update loop) lives in this file as maintained locally at ~/.grok/skills/humanizer/SKILL.md v3.0.0 (52,535 characters).
+
+See README.md for install and usage.
