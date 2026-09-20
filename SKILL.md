@@ -18,12 +18,12 @@ allowed-tools:
 
 Read these files in order before you humanize anything:
 
-1. `docs/01-core.md` — task, voice, content-type detection, personality, intensity modes
-2. `docs/02-patterns.md` — content + language catalog (patterns 1-13)
-3. `docs/02b-style-detection.md` — style, communication, filler, detection guidance (patterns 14-33)
-4. `docs/03-process.md` — channel markers, process, report, self-update, GitHub sync
+1. `docs/01-core.md`
+2. `docs/02-patterns.md`
+3. `docs/02b-style-detection.md`
+4. `docs/03-process.md`
+5. `docs/03b-example.md`
 
-Then run the draft → audit → final loop.
-
-After every review, run the Auto-Improvement Loop. Append `proposals/humanizer-proposals.md`. Version history lives in README.md.
+Then run draft → audit → final. After every review, run the Auto-Improvement Loop and append `proposals/humanizer-proposals.md`.
+Version history lives in README.md.
 Repo: `kadowcreates/Humanizer` on `main`.
