@@ -1,3 +1,5 @@
+> **Moved.** This skill now lives in [kadowcreates/kadow-mode](https://github.com/kadowcreates/kadow-mode/tree/main/skills/humanizer), with the other kadow-mode skills. This repo is archived.
+
 # Humanizer
 
 Pattern-based skill that finds AI writing tells and rewrites the text so it sounds like a person wrote it.
